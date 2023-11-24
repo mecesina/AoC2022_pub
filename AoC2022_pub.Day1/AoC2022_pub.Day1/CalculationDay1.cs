@@ -1,15 +1,12 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace AoC2022_pub.Day1
+﻿namespace AoC2022_pub.Day1
 {
     internal class CalculationDay1
     {
-        readonly string[] lines = File.ReadAllLines("..\\testAoC2022.txt"); //NOTE: The file needs to be placed in Debug folder of the application
+        readonly string[] lines = File.ReadAllLines("..\\newInputAoC2022.txt"); //NOTE: The file needs to be placed in Debug folder of the application
 
 
         List<int> caloriesPerElf = new List<int>();
         List<int> totalElfsCalories = new List<int>();
-        
 
         public int CalculateMaxCal() 
         {
@@ -26,42 +23,22 @@ namespace AoC2022_pub.Day1
 
                 for(int i = 0; i<parsedCal.Count; i++)
                 {
-                    while(parsedCal[i]!=0 && i<parsedCal.Count-1) //doesn't take the last value in account!
+                    while(parsedCal[i]!=0 && i<parsedCal.Count-1)
                     {
                         caloriesPerElf.Add(parsedCal[i]);
                         i++;
                     }
+                    if (i == parsedCal.Count - 1)
+                    {
+                        caloriesPerElf.Add(parsedCal[i]);
+                    }
 
                     totalElfsCalories.Add(caloriesPerElf.Sum());
                     caloriesPerElf.Clear();
+
                 }
 
-
                 return totalElfsCalories;
-                //foreach (string line in lines)
-                //{
-                //    //caloriesPerElf.Add(int.Parse(line.Trim()));
-                //    if (String.IsNullOrEmpty(line))
-                //        break;
-
-                //    int parsedCal;
-                //    bool success = int.TryParse(line, out parsedCal);
-                //    if (success)
-                //    {
-                //        caloriesPerElf.Add(parsedCal);
-                //    }
-                //    else
-                //    {
-                //        Console.WriteLine($"Conversion of '{line}' to {parsedCal} failed");
-                //    }
-                //    //int parsedCal = int.Parse(line);
-
-                //}
-                //foreach (int cal in caloriesPerElf)
-                //{
-                //    int totalCalPerElf = caloriesPerElf.Sum();
-                //}
-                //return totalCalPerElf;
             }
             catch (Exception ex)
             {
